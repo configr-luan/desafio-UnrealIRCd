@@ -25,3 +25,5 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
 - [Cliente de IRC Linux] https://sempreupdate.com.br/como-instalar-o-irssi-um-cliente-irc-no-ubuntu-linux-mint-fedora-debian/
 - [Cliente de IRC Windows] https://www.tlscript.com.br/
 - [Dockerfile References] https://docs.docker.com/engine/reference/builder/
+
+## Instalação
