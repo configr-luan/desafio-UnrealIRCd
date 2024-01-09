@@ -10,7 +10,7 @@ RUN apt-get update && \
     libargon2-dev libsodium-dev libc-ares-dev libcurl4-openssl-dev wget tar ca-certificates && \
     apt-get clean
 
-#criar usuário (recomendação não utilizar root), diretório para baixar a instalação e define as permissões
+#cria o usuário (recomendação não utilizar root), diretório para baixar a instalação e define as permissões
 RUN useradd -m -s /bin/bash ircd && \
     mkdir -p /home/ircd/core && \
     chown ircd:ircd /home/ircd/core
@@ -24,11 +24,11 @@ RUN wget --trust-server-names https://www.unrealircd.org/downloads/unrealircd-6.
     tar xvzf unrealircd-6.1.4.tar.gz && cd unrealircd-6.1.4 && \
 	./Config && make -j$(nproc) && make install
 
-#copia os arquivos de configuração do irc e openssl (para gerar o certificado)
+#copia os arquivos de configuração do irc e openssl
 COPY example.conf /home/ircd/unrealircd/conf/unrealircd.conf
 COPY openssl.cnf /home/ircd/unrealircd/openssl.cnf
 
-#gera o certificado ssl
+#gera o certificado
 RUN /usr/bin/openssl ecparam -out /home/ircd/unrealircd/conf/tls/server.key.pem -name secp384r1 -genkey && \
     /usr/bin/openssl req -new -batch \
         -config /home/ircd/unrealircd/openssl.cnf \
