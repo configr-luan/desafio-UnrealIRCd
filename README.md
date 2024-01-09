@@ -27,7 +27,7 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
 - [Dockerfile References] https://docs.docker.com/engine/reference/builder/
 
 ## Instalação
-- Abrir as portas no firewall (6667, opcional 6697 e 7000):
+- Abrir a porta 6667 no firewall da Cloud:
 
 ```
 vim /etc/firewall.d/03_custom
@@ -83,7 +83,7 @@ admin {
 }
 ```
 
-Na sessão 'allow', ip *, para permitir o acesso global, e a senha
+Adicionar no bloco 'allow', ip *, para permitir o acesso global, e a senha
 ```
 allow {
 	/*mask 192.0.2.1;*/
@@ -108,8 +108,17 @@ oper luanmykel {
 => Gerar hash argon2 - https://argon2.online/
 
 
-adicionar mais duas cloak-keys combinação de 80 caracteres (0-9 + A-Z + a-z) 
+alterar dados da NetWor e adicionar mais duas cloak-keys combinação de 80 caracteres (0-9 + A-Z + a-z) 
 ```
+    network-name 		"ConfiGR";
+	default-server 		"irc.confi.gr";
+	services-server 	"services.confi.gr";
+	stats-server 		"stats.confi.gr";
+
+
+
+
+
 cloak-keys {
 		"Oozahho1raezoh0iMee4ohvegaifahv5xaepeitaich9tahdiquaid0geecipahdauVaij3zieph4ahi";
 		"NbcFsNorzulKu3AjEx1uuEfajWAd8ks7jpFWO3MZHFQRZDXloTO3ijh79PZsql1Aes9rwZpiO8vWSMD7";
@@ -117,29 +126,84 @@ cloak-keys {
 	}
 ```
 
-e-mail ou URL mostrado quando um usuário é banido
+e-mail ou URL exibido quando um usuário é banido
 ```
 kline-address 'set.this.to.email.address'; 
 ```
 
 
-- Compilar a imagem do Docker:
+- Criar a imagem do Docker
 
 ```
 sudo docker build -t unrealircd .
 ```
 
-- Criar / Iniciar o container
-  (acesso local às portas padrões)
-```
-sudo docker run -d unrealircd:latest
-```
-  ( com as portas expostas publicamente )
+Para usar com o WebPanel, criar uma rede para os dois containers se comunicarem
 
 ```
-sudo docker run -p 6667:6667 -p 6697:6697 -p 7000;7000 -d unrealircd:latest
+sudo docker network create irc
+```
+- Criar / Iniciar o container
+```
+sudo docker run -p 6667:6667 -d --network=irc --restart always unrealircd:latest
 
 ou
 
-sudo docker run -p 6667:6667 -d unrealircd:latest
+sudo docker run -p 6667:6667 -d --network=irc unrealircd:latest
 ```
+
+- Conectar com o irssi ou outro cliente utilizando o ip/host do container
+
+
+## UnrealWebPanel
+
+- ajustar no final do arquivo example.conf (se forem realizadas alterações, atualizar a imagem do irc e aplicar no container):
+```
+include "rpc.modules.default.conf";
+
+/* HTTPS on port 8600 for the JSON-RPC API */
+listen {
+        ip *;
+        port 8600;
+        options { rpc; }
+}
+
+/* API user */
+rpc-user webpanel {
+        match { ip *; }
+        password "Xf3hBmeiFkaHa5";
+}
+```
+- Criar a imagem do Docker
+```
+cd webpanel
+
+sudo docker build -t unrealircd-webpanel .
+```
+
+- Criar / Iniciar o container
+```
+sudo docker run -p 85:80 -d --network=irc --restart always unrealircd-webpanel:latest
+```
+
+- Acessar utilizando o ip/host + porta 85, as credenciais serão criadas no primeiro acesso
+
+
+# live test
+
+Host irc (porta 6667)
+```
+ip-45-56-109-129.cloudezapp.io
+```
+
+- Aplicação do tipo Custom (81) no painel com a PORTA CUSTOMIZADA ajustada para 85
+
+WebPanel
+```
+http://webapp372061.ip-45-56-109-129.cloudezapp.io
+```
+
+User: configr
+
+Senha: ZeQmeiZzBH8L@
+
