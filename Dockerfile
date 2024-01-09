@@ -39,7 +39,7 @@ RUN /usr/bin/openssl ecparam -out /home/ircd/unrealircd/conf/tls/server.key.pem 
         -signkey /home/ircd/unrealircd/conf/tls/server.key.pem \
         -out /home/ircd/unrealircd/conf/tls/server.cert.pem
 
-#define o diretório de execução do irc
+#define o workdir padrao
 WORKDIR /home/ircd/unrealircd/
 
 #portas utilizadas para o container
