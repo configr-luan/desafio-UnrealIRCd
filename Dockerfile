@@ -10,7 +10,7 @@ RUN apt-get update && \
     libargon2-dev libsodium-dev libc-ares-dev libcurl4-openssl-dev wget tar ca-certificates && \
     apt-get clean
 
-#cria o usuário (recomendação não utilizar root), diretório para baixar a instalação e define as permissões
+#cria o usuário (recomendação não utilizar root), diretório para baixar a instalação e define o owner
 RUN useradd -m -s /bin/bash ircd && \
     mkdir -p /home/ircd/core && \
     chown ircd:ircd /home/ircd/core
