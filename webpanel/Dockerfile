@@ -4,12 +4,12 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND noninteractive
 
 #atualiza e instala os pacotes necessários
-RUN apt-get update && apt upgrade && \
+RUN apt-get update && apt upgrade -y && \
     apt-get install -y ca-certificates supervisor apt-transport-https software-properties-common nginx git
 
-#add o repositorio do php e instala
+#add o repositorio do php e instala com os módulos necessários
 RUN add-apt-repository ppa:ondrej/php && apt-get update && \
-    apt-get install -y php8.2 php8.2-fpm php8.2-curl php8.2-zip composer && \
+    apt-get install -y php8.2 php8.2-fpm php8.2-curl php8.2-zip php8.2-mbstring composer && \
     apt-get clean
 
 #cria o diretório padrao para o php run
