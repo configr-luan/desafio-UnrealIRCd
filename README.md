@@ -148,7 +148,7 @@ rpc-user adminpanel {
 ```
 sudo apt update
 
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -156,7 +156,7 @@ sudo echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.
 
 sudo apt update
 
-sudo apt install docker-ce docker-ce-cli containerd.io
+sudo apt install -y docker-ce docker-ce-cli containerd.io
 ```
 
 - Clonar o repositório e acessar diretório
