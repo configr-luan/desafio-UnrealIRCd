@@ -3,7 +3,7 @@ FROM ubuntu:latest
 #definir a instalação sem interação
 ENV DEBIAN_FRONTEND noninteractive
 
-#atualiza e instala os pacotes necessários
+#atualiza e instala os pacotes
 RUN apt-get update && apt upgrade -y && \
     apt-get install -y ca-certificates supervisor apt-transport-https software-properties-common nginx git
 
