@@ -329,9 +329,9 @@ rpc-user adminpanel {
 
 - Aplicação do tipo Custom (81) no painel com a PORTA CUSTOMIZADA ajustada para 85
 
-```
-http://webapp372061.ip-45-56-109-129.cloudezapp.io
-```
+
+[http://webapp372061.ip-45-56-109-129.cloudezapp.io](http://webapp372061.ip-45-56-109-129.cloudezapp.io)
+
 
 Usuário: configr
 
