@@ -43,8 +43,8 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
    - *[Instalação no Docker](#instalação-do-unrealircd-webpanel-via-dockerfile)*
    - *[Instalação no Ubuntu + Nginx](#instalação-do-unrealircd-webpanel-no-ubuntu-e-nginx)*
    - *[Instalação no Windows](#instalação-do-unrealircd-webpanel-no-windows)*
-   - *[Demonstração](#demonstração-unrealircd-webpanel)*
    - *[Conectar o Servidor IRCd](#conectar-o-servidor-no-webpanel)*
+   - *[Demonstração](#demonstração-unrealircd-webpanel)*
 ---
 # UnrealIRCd
 
