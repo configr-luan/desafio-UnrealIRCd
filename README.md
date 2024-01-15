@@ -400,7 +400,7 @@ composer install
 - Acessar utilizando o localhost, 127.0.0.1 ou ip, as credenciais serão criadas no primeiro acesso
 
 
-# Conectar o servidor no WebPanel 
+### Conectar o servidor no WebPanel 
 - Para conectar, utilizar os dados configurados no example.conf(unrealircd.conf):
 ```
 rpc-user adminpanel {
