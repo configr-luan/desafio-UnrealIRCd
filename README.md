@@ -376,15 +376,15 @@ C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64
 - Baixar e descompactar o UnrealIRCd Webpanel:
 [UnrealIRCd Webpanel](https://codeload.github.com/unrealircd/unrealircd-webpanel/zip/refs/heads/main)
 
-- Apagar o conteúdo padrão da pasta do Laragon: C:\laragon\www
+- Apagar o conteúdo padrão da pasta do Laragon: **C:\laragon\www**
 
-- Copiar o conteúdo da pasta descompactada do UnrealWebPanel para a pasta do Laragon (C:\laragon\www)
+- Copiar o conteúdo da pasta descompactada do UnrealWebPanel para a pasta do Laragon **(C:\laragon\www)**
 
 
 - Baixar e instalar o composer:
 [Composer Setup.exe](https://getcomposer.org/Composer-Setup.exe)
 
-- Indicar o diretório do php do Laragon para utilizar no composer - C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64\php.exe
+- Indicar o diretório do php do Laragon para utilizar no composer - **C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64\php.exe**
 - Marcar a opção para adicionar o Php e instalar
 
 - Acessar pelo powershell, o caminho do Laragon onde estão os arquivos do WebPanel:
