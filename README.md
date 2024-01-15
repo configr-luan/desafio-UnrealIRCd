@@ -26,6 +26,9 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
 - [Cliente de IRC Windows] https://www.tlscript.com.br/
 - [Dockerfile References] https://docs.docker.com/engine/reference/builder/
 ---
+# Tópicos
+
+
 - **UnrealIRCd**
     - *[Arquivos de Configuração](#arquivos-de-configuração)*
     - *[Instalação no Docker](#instalação-do-unrealircd-via-dockerfile)*
@@ -43,7 +46,10 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
    - *[Demonstração](#demonstração-unrealircd-webpanel)*
    - *[Conectar o Servidor IRCd](#conectar-o-servidor-no-webpanel)*
 ---
-# Arquivos de configuração
+# UnrealIRCd
+
+
+## Arquivos de configuração
 
 
 -- openssl.cnf (informações do certificado - usado apenas para instalação via Dockerfile):
@@ -144,7 +150,7 @@ rpc-user adminpanel {
 
 
 
-# Instalação do UnrealIRCd via Dockerfile
+## Instalação do UnrealIRCd via Dockerfile
 
 - Instalar o Docker:
 ```
@@ -184,7 +190,7 @@ sudo docker run -p 6667:6667 -d --network=irc unrealircd:latest
 ```
 - Conectar com o irssi ou outro cliente utilizando o ip/host do container
 
-# Instalação do UnrealIRCd no Ubuntu
+## Instalação do UnrealIRCd no Ubuntu
 
 - Instalar os pacotes necessários
 ```
@@ -232,7 +238,7 @@ cd ~/unrealircd
 
 
 
-# Instalação do UnrealIRCd no Windows
+## Instalação do UnrealIRCd no Windows
 
 
 - Baixar o e instalar UnrealIRCd: 
@@ -271,7 +277,7 @@ openssl x509 -req -days 365 -in server.csr.pem -signkey server.key.pem -out serv
 - Conectar com o mIRC ou outro cliente utilizando localhost, 127.0.0.1 ou ip
 
 
-# Obs
+## Obs
 
 - Em produção, abrir a porta do Firewall. Exemplo:
 ```
@@ -289,7 +295,7 @@ systemctl restart firewall
 
 
 
-# Demonstração UnrealIRCd
+## Demonstração UnrealIRCd
 
 Host irc (porta 6667)
 ```
@@ -313,7 +319,7 @@ tarefas administrativas, diretamente no navegador.
 
 [UnrealIRCd WebPanel](https://www.unrealircd.org/docs/UnrealIRCd_webpanel)
 
-# Instalação do UnrealIRCd WebPanel via Dockerfile
+## Instalação do UnrealIRCd WebPanel via Dockerfile
 
 - Criar a imagem do Docker
 ```
@@ -330,7 +336,7 @@ sudo docker run -p 85:80 -d --network=irc --restart always unrealircd-webpanel:l
 - Acessar utilizando o ip/host + porta 85, as credenciais serão criadas no primeiro acesso
 
 
-# Instalação do UnrealIRCd WebPanel no Ubuntu e Nginx
+## Instalação do UnrealIRCd WebPanel no Ubuntu e Nginx
 
 - Instalar os pacotes necessários (Ubuntu 20 ou superior)
 ```
@@ -363,7 +369,7 @@ exit
 
 
 
-# Instalação do UnrealIRCd WebPanel no Windows
+## Instalação do UnrealIRCd WebPanel no Windows
 
 
 - Baixar e instalar o Laragon Wamp (Ou outro webserver de sua preferência)
@@ -400,7 +406,7 @@ composer install
 - Acessar utilizando o localhost, 127.0.0.1 ou ip, as credenciais serão criadas no primeiro acesso
 
 
-# Conectar o servidor no WebPanel
+## Conectar o servidor no WebPanel
 - Para conectar, utilizar os dados configurados no example.conf(unrealircd.conf):
 ```
 rpc-user adminpanel {
@@ -410,7 +416,7 @@ rpc-user adminpanel {
 ```
 
 
-# Demonstração UnrealIRCd WebPanel
+## Demonstração UnrealIRCd WebPanel
 
 - Aplicação do tipo Custom (81) no painel com a PORTA CUSTOMIZADA ajustada para 85
 
