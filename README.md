@@ -46,7 +46,6 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
 # Arquivos de configuração
 
 
-
 -- openssl.cnf (informações do certificado - usado apenas para instalação via Dockerfile):
 ```
 countryName_default            = BR
