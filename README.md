@@ -41,6 +41,7 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
    - *[Instalação no Ubuntu + Nginx](#instalação-do-unrealircd-webpanel-no-ubuntu-e-nginx)*
    - *[Instalação no Windows](#instalação-do-unrealircd-webpanel-no-windows)*
    - *[Demonstração](#demonstração-unrealircd-webpanel)*
+   - *[Conectar o Servidor IRCd](#conectar-o-servidor-no-WebPanel)*
 ---
 # Arquivos de configuração
 
@@ -400,7 +401,8 @@ composer install
 - Acessar utilizando o localhost, 127.0.0.1 ou ip, as credenciais serão criadas no primeiro acesso
 
 
-### Conectar o servidor no Webpanel utilizando os dados configurados no example.conf(unrealircd.conf):
+### Conectar o servidor no WebPanel 
+- Para conectar, utilizar os dados configurados no example.conf(unrealircd.conf):
 ```
 rpc-user adminpanel {
         match { ip *; }
