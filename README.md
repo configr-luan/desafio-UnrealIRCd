@@ -30,6 +30,7 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
     - *[Arquivos de Configuração](#arquivos-de-configuração)*
     - *[Instalação no Docker](#instalação-do-unrealircd-via-dockerfile)*
     - *[Instalação no Ubuntu](#instalação-do-unrealircd-no-ubuntu)*
+    - *[Instalação no Windows](#instalação-do-unrealircd-no-windows)*
     - *[Obs.](#obs)*
     - *[Demonstração](#demonstração-unrealircd)*
 
@@ -38,6 +39,7 @@ Você deverá editar esse Dockerfile para que ele fique válido e builde a image
    - *[Sobre](#unrealircd-webpanel)*
    - *[Instalação no Docker](#instalação-do-unrealircd-webpanel-via-dockerfile)*
    - *[Instalação no Ubuntu + Nginx](#instalação-do-unrealircd-webpanel-no-ubuntu-e-nginx)*
+   - *[Instalação no Windows](#instalação-do-unrealircd-webpanel-no-windows)*
    - *[Demonstração](#demonstração-unrealircd-webpanel)*
 ---
 # Arquivos de configuração
@@ -223,10 +225,50 @@ cd ~/unrealircd
 ./unrealircd start
 ```
 
+
 ![Unreal Service](https://i.imgur.com/YLedp0v.png)
 
 - Conectar com o irssi ou outro cliente utilizando localhost, 127.0.0.1 ou ip
 
+
+
+# Instalação do UnrealIRCd no Windows
+
+
+- Baixar o e instalar UnrealIRCd: 
+[unrealircd-6.1.4.exe](https://www.unrealircd.org/downloads/unrealircd-6.1.4.exe)
+
+
+- Criar o arquivo unrealircd.conf com o conteúdo do arquivo example.conf
+```
+ C:\Program Files\UnrealIRCd 6\conf\unrealircd.conf
+```
+- Baixar e instalar o perl: 
+[strawberry-perl-5.38.0.1-64bit.msi](https://github.com/StrawberryPerl/Perl-Dist-Strawberry/releases/download/SP_5380_5361/strawberry-perl-5.38.0.1-64bit.msi)
+
+
+- Baixar e instalar o Cygwin: 
+[https://cygwin.com/setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe)
+
+
+
+- Executar o Cygwin64 Terminal (ícone no desktop) e gerar o certificado
+```
+mkdir tls
+cd tls
+
+openssl genpkey -algorithm RSA -out server.key.pem
+openssl req -new -key server.key.pem -out server.csr.pem
+openssl x509 -req -days 365 -in server.csr.pem -signkey server.key.pem -out server.cert.pem
+```
+- Copiar os arquivos gerados **(C:\cygwin64\home\Luan\tls)** para a pasta tls do UnrealIRCd **(C:\Program Files\UnrealIRCd 6\conf\tls)**
+
+- Executar o UnrealIRCd pelo ícone no desktop
+
+![UnrealIRCd Windows](https://i.imgur.com/FG8W8lF.png)
+
+
+- Conectar com o mIRC ou outro cliente utilizando localhost, 127.0.0.1 ou ip
 
 
 # Obs
@@ -302,9 +344,12 @@ sudo apt-get update && sudo apt-get install -y ca-certificates apt-transport-htt
 sudo su
 echo > /etc/nginx/sites-available/default && vim /etc/nginx/sites-available/default
 ```
-- Clonar o repositório do WebPanel, instalar usando o composer e definir o owner
+- Após editar o arquivo, reiniciar o nginx
 ```
 service nginx restart
+```
+- Clonar o repositório do WebPanel, instalar usando o composer e definir o owner
+```
 cd /var/www/html
 git clone https://github.com/unrealircd/unrealircd-webpanel
 cd /var/www/html/unrealircd-webpanel
@@ -316,7 +361,46 @@ exit
 - Acessar utilizando o localhost, 127.0.0.1 ou ip, as credenciais serão criadas no primeiro acesso
 
 
-### Conectar o servidor no Webpanel utilizando os dados configurados no example.conf:
+
+
+# Instalação do UnrealIRCd WebPanel no Windows
+
+
+- Baixar e instalar o Laragon Wamp (Ou outro webserver de sua preferência)
+[Laragon Wamp.exe](https://github.com/leokhoa/laragon/releases/download/6.0.0/laragon-wamp.exe)
+
+- Ativar o módulo extension=sodium no php.ini (descomentar a linha):
+```
+C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64
+```
+- Baixar e descompactar o UnrealIRCd Webpanel:
+[UnrealIRCd Webpanel](https://codeload.github.com/unrealircd/unrealircd-webpanel/zip/refs/heads/main)
+
+- Apagar o conteúdo padrão da pasta do Laragon: C:\laragon\www
+
+- Copiar o conteúdo da pasta descompactada do UnrealWebPanel para a pasta do Laragon (C:\laragon\www)
+
+
+- Baixar e instalar o composer:
+[Composer Setup.exe](https://getcomposer.org/Composer-Setup.exe)
+
+- Indicar o diretório do php do Laragon para utilizar no composer - C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64\php.exe
+- Marcar a opção para adicionar o Php e instalar
+
+- Acessar pelo powershell, o caminho do Laragon onde estão os arquivos do WebPanel:
+```
+cd C:\laragon\www
+```
+- Executar o composer
+```
+composer install
+```
+
+
+- Acessar utilizando o localhost, 127.0.0.1 ou ip, as credenciais serão criadas no primeiro acesso
+
+
+### Conectar o servidor no Webpanel utilizando os dados configurados no example.conf(unrealircd.conf):
 ```
 rpc-user adminpanel {
         match { ip *; }
